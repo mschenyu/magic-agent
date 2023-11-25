@@ -1,3 +1,8 @@
+import {Agent} from "../../components/Agent";
+import { ANSWERS } from '../../constants/index'
+
 export const Story1 = () => {
-  return (<h1>story1</h1>)
+  return (<div>
+    <Agent dictionary={ANSWERS} />
+  </div>)
 }

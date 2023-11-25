@@ -1,13 +1,10 @@
 import {useRef, useState} from "react";
-import { ANSWERS } from '../../constants/index'
 import agentImg from '../../assets/agent.png'
-import audioMp3 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase01-dialog-01.mp3'
 import './index.css'
 
-export const Agent = () => {
+export const Agent = ({dictionary}) => {
   const [msg, setMsg] = useState('')
   const [showModal, setShowModal] = useState(false)
-  const [audioSrc,setAudioSrc] = useState(audioMp3)
   const audioRef = useRef(null)
 
   //语音识别
@@ -21,11 +18,11 @@ export const Agent = () => {
     const { transcript, confidence } = results[results.length - 1][0];
     setMsg(transcript)
     setShowModal(true)
-    // if(ANSWERS[transcript]) {
-    //   // 播放录音
-    // }
-    setAudioSrc(audioMp3)
-    audioRef.current.play()
+    if(dictionary[transcript]) {
+      // 播放录音
+      audioRef.current.src = dictionary[transcript]
+      audioRef.current.play()
+    }
   }
   newRecognition.onend = () => { newRecognition.start() }
 
@@ -42,7 +39,7 @@ export const Agent = () => {
         <img src={agentImg}/>
       </div>
       <audio ref={audioRef} >
-        <source src={audioSrc} type="audio/mpeg" />
+        <source type="audio/mpeg" />
       </audio>
     </div>
   </div>)
