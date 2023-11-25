@@ -7,12 +7,14 @@ import story10201 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-stor
 import story10202 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase02-dialog-02.mp3'
 import story10203 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase02-dialog-03.mp3'
 import story10301 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase03-dialog-01.mp3'
-import {DialogModal} from "../../components/DialogModal";
+import {DialogModal} from "../../components/DialogModal"
+import {MusicPlayer} from '../../components/MusicPlayer/index'
 
 export const Story1 = () => {
   const [started,setStarted] = useState(false)
   const [showModal, setShowMadal] = useState(false)
   const [msg, setMsg] = useState('')
+  const [showMusic, setShowMusic] = useState(false)
   const audioRef = useRef(null)
 
   useEffect(() => {
@@ -43,8 +45,15 @@ export const Story1 = () => {
         audioRef.current.play()
         audioRef.current.onended = () => {
           setMsg('谢谢，开始播放吧')
+          setTimeout(() => {
+            setShowMusic(true)
+          }, 2000)
         }
       }, 20000)
+
+      setTimeout(() => {
+        setShowMusic(false)
+      }, 40000)
 
       // 异常预警
       setTimeout(() => {
@@ -55,7 +64,7 @@ export const Story1 = () => {
         audioRef.current.onended = () => {
           setMsg('多谢提醒，那我这周六下午去售后检测吧')
         }
-      }, 30000)
+      }, 40000)
       setTimeout(() => {
         setShowMadal(true)
         setMsg('OK，已帮你把行程添加到日程中。需要帮你提前预约吗?')
@@ -64,7 +73,7 @@ export const Story1 = () => {
         audioRef.current.onended = () => {
           setMsg('谢谢，需要的')
         }
-      }, 40000)
+      }, 60000)
       setTimeout(() => {
         setShowMadal(true)
         setMsg('好滴，已帮你预约周六下午2点到4点陆家嘴店售后维修')
@@ -73,7 +82,7 @@ export const Story1 = () => {
         audioRef.current.onended = () => {
           setMsg('')
         }
-      }, 50000)
+      }, 70000)
 
       //达到目的地
       setTimeout(() => {
@@ -84,20 +93,24 @@ export const Story1 = () => {
         audioRef.current.onended = () => {
           setMsg('好的，下班见')
         }
-      }, 60000)
+      }, 80000)
 
       setTimeout(() => {
         setMsg('')
         setShowMadal(false)
-      }, 68000)
+      }, 85000)
     }
   }, [started, audioRef])
 
+  const handleStart = () => {
+    setStarted(true)
+  }
 
 
   return (<div className='story1-page'>
-    <button onClick={() => setStarted(true)}>开始</button>
+    <button onClick={handleStart}>开始</button>
     <DialogModal showModal={showModal} msg={msg} />
+    <MusicPlayer showMusic={showMusic} />
     <audio ref={audioRef} >
       <source type="audio/mpeg" />
     </audio>
