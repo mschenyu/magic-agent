@@ -1,0 +1,7 @@
+.story1-page {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../assets/background.png");
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
