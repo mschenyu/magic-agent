@@ -1,7 +1,7 @@
 import {useRef, useState} from "react";
 import { ANSWERS } from '../../constants/index'
 import agentImg from '../../assets/agent.png'
-import audioMp3 from '../../assets/audio/zh-CN-XiaoxiaoNeural-storyline01-usecase01.mp3'
+import audioMp3 from '../../assets/audio/zh-CN-XiaoxiaoNeural-storyline01-usecase01-dialog-01.mp3'
 import './index.css'
 
 export const Agent = () => {
