@@ -1,7 +1,14 @@
+import dialog03 from '../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase01-dialog-03.mp3'
+
 export const ANSWERS = {
   '你好': 'Eric,早上好！今天周一，要导航去公司吗',
   '是的': '好的，为您导航到公司，预计二十分钟后到达',
 
+}
+
+export const STORY2_ANSWERS = {
+  '早啊Taycan，我们现在出发去公司吧！': '../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase01-dialog-01.mp3',
+  '开始': dialog03,
 }
 
 export const AUTO_DETECTION = {
