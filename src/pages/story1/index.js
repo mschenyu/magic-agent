@@ -64,7 +64,7 @@ export const Story1 = () => {
       // 异常预警
       setTimeout(() => {
         setShowMadal(true)
-        setVolume(0.3)
+        setVolume(0.1)
         setMsg('噢，不妙！刚检测到副驾位置胎压低于正常值，建议周末最好去售后检测下问题')
         audioRef.current.src = story10201
         audioRef.current.play()
@@ -120,11 +120,11 @@ export const Story1 = () => {
 
   return (<div className={currentBg === normalBg ? 'story1-page' : 'story1-page-nav'} >
     <Background isActive={started} />
+    <DialogModal showModal={showModal} msg={msg} />
     {currentBg === navBg && <img src={path} className='path-img' /> }
     {currentBg === navBg && <img src={navStatus} className='nav-status'/>}
 
     <AgentIcon onIconClick={handleIconClick} isVisible={visible} />
-    <DialogModal showModal={showModal} msg={msg} />
     <MusicPlayer showMusic={showMusic} volume={volume} />
     <audio ref={audioRef} >
       <source type="audio/mpeg" />

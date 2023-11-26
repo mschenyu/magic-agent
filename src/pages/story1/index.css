@@ -36,6 +36,15 @@
 
 .path-img {
     position: fixed;
-    right: 43%;
-    height: 70%;
+    right: 44%;
+    height: 100%;
+    top: 0;
+}
+
+.nav-status {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
 }
