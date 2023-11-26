@@ -10,6 +10,7 @@ import story10301 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-stor
 import normalBg from '../../assets/background.png'
 import navBg from '../../assets/nav-bg.png'
 import path from '../../assets/path.png'
+import navStatus from '../../assets/nav-status.png'
 import {Background, DialogModal} from "../../components/DialogModal"
 import {MusicPlayer} from '../../components/MusicPlayer/index'
 
@@ -118,6 +119,7 @@ export const Story1 = () => {
   return (<div className={currentBg === normalBg ? 'story1-page' : 'story1-page-nav'} >
     <Background isActive={started} />
     {currentBg === navBg && <img src={path} className='path-img' /> }
+    {currentBg === navBg && <img src={navStatus} className='nav-status'/>}
 
     <DialogModal showModal={showModal} msg={msg} onIconClick={handleIconClick} />
     <MusicPlayer showMusic={showMusic} volume={volume} />

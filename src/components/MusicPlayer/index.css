@@ -33,6 +33,11 @@
     margin-top: 30px;
 }
 
+.progress {
+    width: 90%;
+    margin-top: 20px;
+}
+
 .full-image {
     position: fixed;
     z-index: 9;

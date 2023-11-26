@@ -4,6 +4,7 @@ import musicImg from '../../assets/music-image.png'
 import btnGroup from '../../assets/btn-group.png'
 import musicSrc from '../../assets/windy.mp3'
 import musicFull from '../../assets/music-full.jpg'
+import progress from '../../assets/progress.png'
 
 
 export const MusicPlayer = ({showMusic, volume=1}) => {
@@ -33,6 +34,7 @@ export const MusicPlayer = ({showMusic, volume=1}) => {
         </div>
       </div>
       <img className='btn-group' src={btnGroup} width='200px' />
+      <img className='progress' src={progress}/>
       <audio ref={musicRef} >
         <source type="audio/mpeg" />
       </audio>
