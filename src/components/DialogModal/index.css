@@ -23,6 +23,7 @@
 }
 
 .agent-modal {
+    position: absolute;
     width: 400px;
     height: fit-content;
     margin: 24px;
