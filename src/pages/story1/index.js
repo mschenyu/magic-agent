@@ -7,7 +7,10 @@ import story10201 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-stor
 import story10202 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase02-dialog-02.mp3'
 import story10203 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase02-dialog-03.mp3'
 import story10301 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase03-dialog-01.mp3'
-import {DialogModal} from "../../components/DialogModal"
+import normalBg from '../../assets/background.png'
+import navBg from '../../assets/nav-bg.png'
+import path from '../../assets/path.png'
+import {Background, DialogModal} from "../../components/DialogModal"
 import {MusicPlayer} from '../../components/MusicPlayer/index'
 
 export const Story1 = () => {
@@ -15,6 +18,7 @@ export const Story1 = () => {
   const [showModal, setShowMadal] = useState(false)
   const [msg, setMsg] = useState('')
   const [showMusic, setShowMusic] = useState(false)
+  const [currentBg, setCurrentBg] = useState(normalBg)
   const audioRef = useRef(null)
 
   useEffect(() => {
@@ -22,9 +26,11 @@ export const Story1 = () => {
       //上班导航
       setTimeout(() => {
         setShowMadal(true)
-        setMsg('Eric,早上好！今天周一，要导航去公司吗')
         audioRef.current.src = story10101
         audioRef.current.play()
+        setTimeout(() => {
+          setMsg('Eric,早上好！今天周一，要导航去公司吗')
+        },1000)
         audioRef.current.onended = () => {
           setMsg('早啊Taycan～我们现在出发去公司吧！')
         }
@@ -32,6 +38,7 @@ export const Story1 = () => {
       setTimeout(() => {
         setShowMadal(true)
         setMsg('好的Eric，正在导航去公司，已为你规划至最快的路线，我们出发吧.')
+        setCurrentBg(navBg)
         audioRef.current.src = story10102
         audioRef.current.play()
         audioRef.current.onended = () => {
@@ -58,7 +65,7 @@ export const Story1 = () => {
       // 异常预警
       setTimeout(() => {
         setShowMadal(true)
-        setMsg('噢，不妙！刚检测到胎压不稳，建议周末最好去售后检测下问题')
+        setMsg('噢，不妙！刚检测到副驾位置胎压低于正常值，建议周末最好去售后检测下问题')
         audioRef.current.src = story10201
         audioRef.current.play()
         audioRef.current.onended = () => {
@@ -87,7 +94,8 @@ export const Story1 = () => {
       //达到目的地
       setTimeout(() => {
         setShowMadal(true)
-        setMsg('到达目的地啦，您可以下车去上班啦，我来停车\n')
+        setCurrentBg(normalBg)
+        setMsg('到达目的地啦，您可以下车去上班啦，我来停车')
         audioRef.current.src = story10301
         audioRef.current.play()
         audioRef.current.onended = () => {
@@ -102,14 +110,16 @@ export const Story1 = () => {
     }
   }, [started, audioRef])
 
-  const handleStart = () => {
+  const handleIconClick = () => {
     setStarted(true)
   }
 
 
-  return (<div className='story1-page'>
-    <button onClick={handleStart}>开始</button>
-    <DialogModal showModal={showModal} msg={msg} />
+  return (<div className={currentBg === normalBg ? 'story1-page' : 'story1-page-nav'} >
+    <Background isActive={started} />
+    {currentBg === navBg && <img src={path} className='path-img' /> }
+
+    <DialogModal showModal={showModal} msg={msg} onIconClick={handleIconClick} />
     <MusicPlayer showMusic={showMusic} />
     <audio ref={audioRef} >
       <source type="audio/mpeg" />

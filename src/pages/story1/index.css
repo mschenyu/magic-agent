@@ -7,3 +7,29 @@
     background-repeat: no-repeat;
     overflow: hidden;
 }
+
+.story1-page-nav {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url("../../assets/nav-bg.png");
+    background-size: 150% 150%;
+    background-position: bottom 0 right 70%;
+    animation: nav-transition 30s linear infinite;
+    animation-delay: 5s;
+}
+
+@keyframes nav-transition {
+    from {
+        background-position: bottom 0 right 70%;
+    }
+    to {
+        background-position: bottom 90% right 70%;
+    }
+}
+
+.path-img {
+    position: fixed;
+    right: 43%;
+    height: 70%;
+}
