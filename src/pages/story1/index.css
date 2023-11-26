@@ -6,6 +6,7 @@
     background-size: 100% auto;
     background-repeat: no-repeat;
     overflow: hidden;
+    background-color: black;
 }
 
 .story1-page > .agent-icon {
@@ -17,6 +18,7 @@
 .story1-page-nav {
     width: 100vw;
     height: 100vh;
+    background-color: black;
     overflow: hidden;
     background-image: url("../../assets/nav-bg.png");
     background-size: 150% 150%;
