@@ -13,6 +13,7 @@ import path from '../../assets/path.png'
 import navStatus from '../../assets/nav-status.png'
 import {AgentIcon, Background, DialogModal} from "../../components/DialogModal"
 import {MusicPlayer} from '../../components/MusicPlayer/index'
+import { useNavigate } from "react-router-dom";
 
 export const Story1 = () => {
   const [started,setStarted] = useState(false)
@@ -23,6 +24,7 @@ export const Story1 = () => {
   const [volume, setVolume] = useState(1)
   const [visible, setVisible] = useState(true)
   const audioRef = useRef(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if(started && audioRef.current) {
@@ -109,6 +111,10 @@ export const Story1 = () => {
         setMsg('')
         setShowMadal(false)
       }, 85000)
+
+      setTimeout(()=> {
+        navigate("/story2")
+      },90000)
     }
   }, [started, audioRef])
 
