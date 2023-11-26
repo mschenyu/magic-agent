@@ -19,6 +19,7 @@ export const Story1 = () => {
   const [msg, setMsg] = useState('')
   const [showMusic, setShowMusic] = useState(false)
   const [currentBg, setCurrentBg] = useState(normalBg)
+  const [volume, setVolume] = useState(1)
   const audioRef = useRef(null)
 
   useEffect(() => {
@@ -58,13 +59,10 @@ export const Story1 = () => {
         }
       }, 20000)
 
-      setTimeout(() => {
-        setShowMusic(false)
-      }, 40000)
-
       // 异常预警
       setTimeout(() => {
         setShowMadal(true)
+        setVolume(0.3)
         setMsg('噢，不妙！刚检测到副驾位置胎压低于正常值，建议周末最好去售后检测下问题')
         audioRef.current.src = story10201
         audioRef.current.play()
@@ -100,6 +98,8 @@ export const Story1 = () => {
         audioRef.current.play()
         audioRef.current.onended = () => {
           setMsg('好的，下班见')
+          setShowMusic(false)
+          setStarted(false)
         }
       }, 80000)
 
@@ -120,7 +120,7 @@ export const Story1 = () => {
     {currentBg === navBg && <img src={path} className='path-img' /> }
 
     <DialogModal showModal={showModal} msg={msg} onIconClick={handleIconClick} />
-    <MusicPlayer showMusic={showMusic} />
+    <MusicPlayer showMusic={showMusic} volume={volume} />
     <audio ref={audioRef} >
       <source type="audio/mpeg" />
     </audio>
