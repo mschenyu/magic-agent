@@ -85,7 +85,7 @@ export const Story1 = () => {
         audioRef.current.onended = () => {
           setMsg('谢谢，需要的')
         }
-      }, 55000)
+      }, 53000)
       setTimeout(() => {
         setShowMadal(true)
         setMsg('好滴，已帮你预约周六下午2点到4点陆家嘴店售后维修')
@@ -94,7 +94,7 @@ export const Story1 = () => {
         audioRef.current.onended = () => {
           setMsg('')
         }
-      }, 65000)
+      }, 62000)
 
       //达到目的地
       setTimeout(() => {
@@ -107,7 +107,7 @@ export const Story1 = () => {
         audioRef.current.onended = () => {
           setMsg('好的，下班见')
         }
-      }, 75000)
+      }, 72000)
 
       setTimeout(() => {
         setStarted(false)
