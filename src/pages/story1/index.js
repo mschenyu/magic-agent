@@ -11,7 +11,7 @@ import normalBg from '../../assets/background.png'
 import navBg from '../../assets/nav-bg.png'
 import path from '../../assets/path.png'
 import navStatus from '../../assets/nav-status.png'
-import {Background, DialogModal} from "../../components/DialogModal"
+import {AgentIcon, Background, DialogModal} from "../../components/DialogModal"
 import {MusicPlayer} from '../../components/MusicPlayer/index'
 
 export const Story1 = () => {
@@ -21,6 +21,7 @@ export const Story1 = () => {
   const [showMusic, setShowMusic] = useState(false)
   const [currentBg, setCurrentBg] = useState(normalBg)
   const [volume, setVolume] = useState(1)
+  const [visible, setVisible] = useState(true)
   const audioRef = useRef(null)
 
   useEffect(() => {
@@ -113,15 +114,17 @@ export const Story1 = () => {
 
   const handleIconClick = () => {
     setStarted(true)
+    setVisible(false)
   }
 
 
   return (<div className={currentBg === normalBg ? 'story1-page' : 'story1-page-nav'} >
-    <Background isActive={started} />
+    {/*<Background isActive={started} />*/}
     {currentBg === navBg && <img src={path} className='path-img' /> }
     {currentBg === navBg && <img src={navStatus} className='nav-status'/>}
 
-    <DialogModal showModal={showModal} msg={msg} onIconClick={handleIconClick} />
+    <AgentIcon onIconClick={handleIconClick} isVisible={visible} />
+    <DialogModal showModal={showModal} msg={msg} />
     <MusicPlayer showMusic={showMusic} volume={volume} />
     <audio ref={audioRef} >
       <source type="audio/mpeg" />
