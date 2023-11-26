@@ -8,6 +8,12 @@
     overflow: hidden;
 }
 
+.story1-page > .agent-icon {
+    left: 5%;
+    top: 5%;
+    position: absolute;
+}
+
 .story1-page-nav {
     width: 100vw;
     height: 100vh;
@@ -30,15 +36,6 @@
 
 .path-img {
     position: fixed;
-    right: 44%;
-    height: 100%;
-
-}
-
-.nav-status {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
+    right: 43%;
+    height: 70%;
 }

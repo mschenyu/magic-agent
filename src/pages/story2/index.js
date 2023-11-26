@@ -96,7 +96,7 @@ export const Story2 = () => {
 
 
   return (<div className='story-page' >
-    {/* <Background isActive={isActive} /> */}
+    <Background isActive={isActive} />
     <AgentIcon className={'agent-icon'} state={'default'} isVisible={isActive ? false : true} onIconClick={start} />
     <DialogModal showModal={showModal} msg={msg} agentIconState={agentIconState} />
     <audio ref={audioRef} >

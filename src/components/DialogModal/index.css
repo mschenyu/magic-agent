@@ -23,16 +23,16 @@
 }
 
 .agent-modal {
-    width: 50vw;
+    width: 400px;
     height: fit-content;
-    margin: 24px auto;
-    padding: 80px;
+    margin: 24px;
+    padding: 48px;
     border-radius: 8px;
     text-align: center;
     color: white;
     font-size: 26px;
     border-radius: 32px;
-    background: rgba(1, 2, 7, 0.80);
+    background: rgba(1, 2, 7, 0.60);
     backdrop-filter: blur(16px);
     transition: all 0.3s linear;
 }
@@ -41,10 +41,10 @@
     color: #FFF;
     text-align: center;
     font-family: PingFang SC;
-    font-size: 32px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
-    line-height: 40px;
+    line-height: 30px;
     padding-top: 12px;
 }
 
