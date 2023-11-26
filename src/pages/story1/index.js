@@ -23,6 +23,7 @@ export const Story1 = () => {
   const [currentBg, setCurrentBg] = useState(normalBg)
   const [volume, setVolume] = useState(1)
   const [visible, setVisible] = useState(true)
+  const [iconState, setIconSate] = useState('')
   const audioRef = useRef(null)
   const navigate = useNavigate()
 
@@ -67,6 +68,7 @@ export const Story1 = () => {
       setTimeout(() => {
         setShowMadal(true)
         setVolume(0.1)
+        setIconSate('tired')
         setMsg('噢，不妙！刚检测到副驾位置胎压低于正常值，建议周末最好去售后检测下问题')
         audioRef.current.src = story10201
         audioRef.current.play()
@@ -76,6 +78,7 @@ export const Story1 = () => {
       }, 40000)
       setTimeout(() => {
         setShowMadal(true)
+        setIconSate('')
         setMsg('OK，已帮你把行程添加到日程中。需要帮你提前预约吗?')
         audioRef.current.src = story10202
         audioRef.current.play()
@@ -126,7 +129,7 @@ export const Story1 = () => {
 
   return (<div className={currentBg === normalBg ? 'story1-page' : 'story1-page-nav'} >
     <Background isActive={started} />
-    <DialogModal showModal={showModal} msg={msg} />
+    <DialogModal showModal={showModal} msg={msg} agentIconState={iconState} />
     {currentBg === navBg && <img src={path} className='path-img' /> }
     {currentBg === navBg && <img src={navStatus} className='nav-status'/>}
 
