@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import './index.css'
 import story10101 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase01-dialog-01.mp3'
 import story10102 from '../../assets/audio/storyline01/zh-CN-XiaoxiaoNeural-storyline01-usecase01-dialog-02.mp3'
@@ -11,12 +11,12 @@ import normalBg from '../../assets/background.png'
 import navBg from '../../assets/nav-bg.png'
 import path from '../../assets/path.png'
 import navStatus from '../../assets/nav-status.png'
-import {AgentIcon, Background, DialogModal} from "../../components/DialogModal"
-import {MusicPlayer} from '../../components/MusicPlayer/index'
+import { AgentIcon, Background, DialogModal } from "../../components/DialogModal"
+import { MusicPlayer } from '../../components/MusicPlayer/index'
 import { useNavigate } from "react-router-dom";
 
 export const Story1 = () => {
-  const [started,setStarted] = useState(false)
+  const [started, setStarted] = useState(false)
   const [showModal, setShowMadal] = useState(false)
   const [msg, setMsg] = useState('')
   const [showMusic, setShowMusic] = useState(false)
@@ -28,7 +28,7 @@ export const Story1 = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(started && audioRef.current) {
+    if (started && audioRef.current) {
       //上班导航
       setTimeout(() => {
         setShowMadal(true)
@@ -36,7 +36,7 @@ export const Story1 = () => {
         audioRef.current.play()
         setTimeout(() => {
           setMsg('Eric,早上好！今天周一，要导航去公司吗')
-        },1000)
+        }, 1000)
         audioRef.current.onended = () => {
           setMsg('早啊Taycan～我们现在出发去公司吧！')
         }
@@ -85,7 +85,7 @@ export const Story1 = () => {
         audioRef.current.onended = () => {
           setMsg('谢谢，需要的')
         }
-      }, 60000)
+      }, 55000)
       setTimeout(() => {
         setShowMadal(true)
         setMsg('好滴，已帮你预约周六下午2点到4点陆家嘴店售后维修')
@@ -94,30 +94,30 @@ export const Story1 = () => {
         audioRef.current.onended = () => {
           setMsg('')
         }
-      }, 70000)
+      }, 65000)
 
       //达到目的地
       setTimeout(() => {
         setShowMadal(true)
         setCurrentBg(normalBg)
+        setShowMusic(false)
         setMsg('到达目的地啦，您可以下车去上班啦，我来停车')
         audioRef.current.src = story10301
         audioRef.current.play()
         audioRef.current.onended = () => {
           setMsg('好的，下班见')
-          setShowMusic(false)
-          setStarted(false)
         }
+      }, 75000)
+
+      setTimeout(() => {
+        setStarted(false)
+        setMsg('')
+        setShowMadal(false)
       }, 80000)
 
       setTimeout(() => {
-        setMsg('')
-        setShowMadal(false)
-      }, 85000)
-
-      setTimeout(()=> {
         navigate("/story2")
-      },90000)
+      }, 90000)
     }
   }, [started, audioRef])
 
@@ -127,16 +127,19 @@ export const Story1 = () => {
   }
 
 
-  return (<div className={currentBg === normalBg ? 'story1-page' : 'story1-page-nav'} >
-    <Background isActive={started} />
+  return (<div>
     <DialogModal showModal={showModal} msg={msg} agentIconState={iconState} />
-    {currentBg === navBg && <img src={path} className='path-img' /> }
-    {currentBg === navBg && <img src={navStatus} className='nav-status'/>}
+    <div className={'story1-page'} >
+      <div className={currentBg === normalBg ? '' : 'story1-page-nav'}></div>
+      <Background isActive={started} />
+      {currentBg === navBg && <img src={path} className='path-img' />}
+      {currentBg === navBg && <img src={navStatus} className='nav-status' />}
 
-    <AgentIcon onIconClick={handleIconClick} isVisible={visible} />
-    <MusicPlayer showMusic={showMusic} volume={volume} />
-    <audio ref={audioRef} >
-      <source type="audio/mpeg" />
-    </audio>
+      <AgentIcon onIconClick={handleIconClick} isVisible={visible}  />
+      <MusicPlayer showMusic={showMusic} volume={volume} />
+      <audio ref={audioRef} >
+        <source type="audio/mpeg" />
+      </audio>
+    </div>
   </div>)
 }
