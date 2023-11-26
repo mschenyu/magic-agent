@@ -9,9 +9,7 @@
 }
 
 .story-page > .agent-icon {
-    left: 50%;
+    left: 5%;
     top: 5%;
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
     position: absolute;
 }
