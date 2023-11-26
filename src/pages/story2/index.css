@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+}
+
+.story-page {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../assets/background.png");
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.agent-modal {
+    width: 0;
+    height: 0;
+    box-sizing: border-box;
+    background: rgba(192, 201, 229, 0.80);
+    backdrop-filter: blur(16px);
+    border-radius: 8px;
+    margin-top: 40px;
+    margin-left: 30px;
+    padding: 0;
+    text-align: center;
+    color: #030C2E;
+    font-size: 26px;
+    transition: all 0.3s linear;
+
+}
+
+.fade-in {
+    width: 450px;
+    height: 300px;
+    padding: 30px;
+}
+
+.agent-icon {
+    margin-top: 20px;
+}
