@@ -2,19 +2,22 @@ import agentImg from "../../assets/agent.png";
 import agentImgInquire01 from "../../assets/agent-inquire-01.png";
 import agentImgInquire02 from "../../assets/agent-inquire-02.png";
 import agentImgwarning from "../../assets/agent-safety-warning.png";
+import agentImgTired from "../../assets/agent-inquire-tired.png";
+import agentImgSad from "../../assets/agent-inquire-sad.png";
 import './index.css'
 
 
-export const DialogModal = ({ showModal, msg, onIconClick, agentIconState }) => {
-  return (<div>
-    <div className={['agent-modal', showModal ? 'fade-in' : ''].join(' ')}>
-      {msg}
-      <AgentIcon state={agentIconState} onIconClick={onIconClick} />
-    </div>
-  </div>)
+export const DialogModal = ({ showModal, msg, agentIconState }) => {
+  return (
+    <div className={[showModal ? 'agent-modal' : 'agent-modal-invisible'].join(' ')}>
+      <AgentIcon state={agentIconState} />
+      <p>
+        {msg}
+      </p>
+    </div>)
 }
 
-export const AgentIcon = ({ state, onIconClick }) => {
+export const AgentIcon = ({ state, isVisible = true, onIconClick }) => {
   let agentImgSrc = agentImg
   switch (state) {
     case 'inquire1':
@@ -25,14 +28,20 @@ export const AgentIcon = ({ state, onIconClick }) => {
       break;
     case 'warning':
       agentImgSrc = agentImgwarning
-      break;  
+      break;
+    case 'tired':
+      agentImgSrc = agentImgTired
+      break;
+    case 'sad': 
+      agentImgSrc = agentImgSad
+      break;
     default:
       agentImgSrc = agentImg
       break;
   }
   return (
-    <div className="agent-icon" >
-      <img src={agentImgSrc} onClick={onIconClick}/>
+    <div className={isVisible ? 'agent-icon' : 'agent-icon-invisible'} >
+      <img src={agentImgSrc} onClick={onIconClick} />
     </div>)
 }
 

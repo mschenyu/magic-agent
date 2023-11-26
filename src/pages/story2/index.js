@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import agentImg from '../../assets/agent.png'
 import './index.css'
-import { Background, DialogModal } from "../../components/DialogModal";
+import { AgentIcon, Background, DialogModal } from "../../components/DialogModal";
 
 import usecase01Dialog01 from '../../assets/audio/storyline02/zh-CN-XiaoxiaoNeural-storyline02-usecase01-dialog-01.mp3'
 import usecase01Dialog02 from '../../assets/audio/storyline02/zh-CN-XiaoxiaoNeural-storyline02-usecase01-dialog-02.mp3'
@@ -18,7 +18,7 @@ export const Story2 = () => {
   const [isStart, setIsStart] = useState(false)
   const [isActive, setisActive] = useState(false)
   useEffect(() => {
-    setTimeout(()=>{
+    setTimeout(() => {
     }, 1000)
   })
   const audioRef = useRef(null)
@@ -38,48 +38,56 @@ export const Story2 = () => {
     setTimeout(() => {
       setMsg("额，你在说什么？");
     }, 15000);
-  
+
     setTimeout(() => {
-      setMsg("酒驾有危险，需要对自己和他人负责。建议在200米前方停车。第二次确认需要酒驾吗？");
+      setMsg("酒驾有危险，需要对自己和他人负责。建议在200米前方停车。第二次确认需要代驾吗？");
+      setAgentIconState('warning')
       audioRef.current.src = usecase01Dialog02;
       audioRef.current.play();
+
     }, 20000);
-  
+
     setTimeout(() => {
+      setAgentIconState('inquire2')
       setMsg("不需要，我没醉。");
     }, 30000);
-  
+
     setTimeout(() => {
+      setAgentIconState('inquire1')
       setMsg("那我很抱歉了，要小心驾驶哦");
       audioRef.current.src = usecase01Dialog03;
       audioRef.current.play();
       usecaseO2(setShowModal, setMsg, audioRef);
-    }, 38000);
+    }, 31500);
   }
-  
+
   function usecaseO2(setShowModal, setMsg, audioRef) {
     setTimeout(() => {
+      setAgentIconState('inquire2')
       setMsg("啊！");
     }, 8000);
-  
+
     setTimeout(() => {
       audioRef.current.src = usecase02Dialog01;
       audioRef.current.play();
+      setAgentIconState('sad')
       setMsg("Eric你还清醒吗？检测到发生了车祸碰撞，需要为你报警吗？");
     }, 12000);
-  
+
     setTimeout(() => {
       audioRef.current.src = usecase02Dialog02;
       audioRef.current.play();
+      setAgentIconState('sad')
       setMsg("Eric你受伤了，系统已自动拨打120急救电话。");
     }, 20000);
-  
+
     setTimeout(() => {
       audioRef.current.src = usecase02Dialog03;
       audioRef.current.play();
+      setAgentIconState('sad')
       setMsg("已为你拨打120，预计5分钟后救援到");
     }, 28000);
-  
+
     setTimeout(() => {
       setMsg("");
       setShowModal(false)
@@ -88,8 +96,9 @@ export const Story2 = () => {
 
 
   return (<div className='story-page' >
-    <Background isActive={isActive} />
-    <DialogModal showModal={showModal} msg={msg} onIconClick={start} agentIconState={agentIconState}/>
+    {/* <Background isActive={isActive} /> */}
+    <AgentIcon className={'agent-icon'} state={'default'} isVisible={isActive ? false : true} onIconClick={start} />
+    <DialogModal showModal={showModal} msg={msg} agentIconState={agentIconState} />
     <audio ref={audioRef} >
       <source type="audio/mpeg" />
     </audio>
