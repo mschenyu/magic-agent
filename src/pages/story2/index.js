@@ -11,6 +11,8 @@ import usecase02Dialog01 from '../../assets/audio/storyline02/zh-CN-XiaoxiaoNeur
 import usecase02Dialog02 from '../../assets/audio/storyline02/zh-CN-XiaoxiaoNeural-storyline02-usecase02-dialog-02.mp3'
 import usecase02Dialog03 from '../../assets/audio/storyline02/zh-CN-XiaoxiaoNeural-storyline02-usecase02-dialog-03.mp3'
 
+import crash from '../../assets/crash.mp3'
+
 export const Story2 = () => {
   const [msg, setMsg] = useState('')
   const [showModal, setShowModal] = useState(false)
@@ -45,12 +47,12 @@ export const Story2 = () => {
       audioRef.current.src = usecase01Dialog02;
       audioRef.current.play();
 
-    }, 20000);
+    }, 18000);
 
     setTimeout(() => {
       setAgentIconState('inquire2')
       setMsg("不需要，我没醉。");
-    }, 30000);
+    }, 28000);
 
     setTimeout(() => {
       setAgentIconState('inquire1')
@@ -58,21 +60,25 @@ export const Story2 = () => {
       audioRef.current.src = usecase01Dialog03;
       audioRef.current.play();
       usecaseO2(setShowModal, setMsg, audioRef);
-    }, 31500);
+    }, 30000);
   }
 
   function usecaseO2(setShowModal, setMsg, audioRef) {
     setTimeout(() => {
       setAgentIconState('inquire2')
       setMsg("啊！");
-    }, 8000);
+      setTimeout(() => {
+        audioRef.current.src = crash;
+        audioRef.current.play();
+      }, 1000);
+    }, 3000);
 
     setTimeout(() => {
       audioRef.current.src = usecase02Dialog01;
       audioRef.current.play();
       setAgentIconState('sad')
       setMsg("Eric你还清醒吗？检测到发生了车祸碰撞，需要为你报警吗？");
-    }, 12000);
+    }, 10500);
 
     setTimeout(() => {
       audioRef.current.src = usecase02Dialog02;
@@ -91,7 +97,7 @@ export const Story2 = () => {
     setTimeout(() => {
       setMsg("");
       setShowModal(false)
-    }, 35000);
+    }, 32000);
   }
 
 
